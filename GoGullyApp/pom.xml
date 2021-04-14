@@ -15,7 +15,6 @@
 	<name>GoGully App</name>
 	<description>Backend for GoGully</description>
 	<properties>
-		<java.version>11</java.version>
 		<frontend-src-dir>${project.basedir}/src/main/webapp/WEB-INF/view/frontend</frontend-src-dir>
 		<frontend-dest-dir>${project.basedir}/src/main/resources</frontend-dest-dir>
 		<node.version>v12.3.1</node.version>
@@ -98,7 +97,7 @@
 							<goal>yarn</goal>
 						</goals>
 						<configuration>
-							<arguments>install</arguments>
+							<arguments>install --network-timeout 100000</arguments>
 						</configuration>
 					</execution>
 

@@ -36,16 +36,18 @@ public class LoginController {
 	@Autowired
 	private SecurityService securityService;
 
-	@GetMapping("/Login")
+	@GetMapping({"/Login","/Register"})
     public String showLoginForm(Model model) {
          
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "index.html";
         }
+        
  
         return "redirect:/";
     }
+	
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -67,9 +69,13 @@ public class LoginController {
 			message = "Passwords don't match";
 		} else if (userName.length() < 7) {
 			message = "Username should be atleast 7 characters";
-		} else if (!userName.matches("[A-Za-z0-9]+") || !name.matches("[A-Za-z ]+")) {
-			message = "Username and name cannot contain special characters";
-		} else if (!email.matches(emailRegex)) {
+		} else if (!userName.matches("[A-Za-z0-9]+") ) {
+			message = "Username cannot contain special characters and space";
+		} 
+		else if(!name.matches("[A-Za-z ]+")) {
+			message = "Name cannot contain special characters or numbers";
+		}
+		else if (!email.matches(emailRegex)) {
 			message = "Please enter a valid email";
 		} else if (existingUser != null) {
 			message = "Email already exists";

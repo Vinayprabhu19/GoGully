@@ -9,6 +9,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import "./App.css";
 function App() {
   return (
     <Router>
