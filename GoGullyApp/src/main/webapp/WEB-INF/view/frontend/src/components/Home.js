@@ -12,6 +12,14 @@ import Teams from '../img/Teams.jpg';
 import Tournaments from '../img/Tournaments.jpg';
 import Matches from '../img/Matches.jpg';
 import "../css/Home.css";
+import InputBase from '@material-ui/core/InputBase';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import ProfileMenu from './Menu/ProfileMenu';
+import NavigationMenu from './Menu/NavigationMenu';
+import HomeImg from '../img/Home.png';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +28,19 @@ class Home extends Component {
     this.state = {
       username: "",
       password: "",
-      errorText: ""
+      errorText: "",
+      profileMenu:{
+        items:[
+          {
+            link:"/Profile",
+            text:"Profile"
+          },
+          {
+            link:"/Logout",
+            text:"Logout"
+          }
+        ]
+      }
       };
 
   }
@@ -28,64 +48,51 @@ class Home extends Component {
     
   render() {
       return <div className="homePage">
+        <Hidden smDown>
         <AppBar id="appBar" position="static">
               <Toolbar>
                 <h1 id="goGullyTextSmall">GoGully</h1>
                 <section className="rightToolbar">
                 <div style={{clear: "both",verticalAlign:true}}>
-                    <h2 style={{float: "left"}} className="topText"></h2>
-                    <h3 style={{float: "right"}} className="topText"><a href="Logout" style={{color:"green"}}>Logout</a></h3>
+                <Button style={{float: "left"}}>
+                  <a href="/Teams" className="menuOption">Teams</a>
+                </Button>
+                <Button style={{float: "left"}}>
+                  <a href="/Teams" className="menuOption">Tournaments</a>
+                </Button>
+                <Button style={{float: "left"}}>
+                  <a href="/Teams" className="menuOption">Matches</a>
+                </Button>
+                <ProfileMenu  floatType={"right"} />
                 </div>
                 </section>
               </Toolbar>
             </AppBar>
-        <div className="middleSection">
-        <h1 id="goGullyText">GoGully</h1>
+            </Hidden> 
         <Hidden mdUp>
-        <Grid container justify="center" id="optionGrid" alignItems="center" spacing={4} direction={"column"}>
-            <Grid item justify="center" alignContent="center">
-            <Button variant="contained" color="secondary" className="optionButton">
-              Teams
-            </Button>
-            </Grid>
-            <Grid item justify="center" alignContent="center">
-            <Button variant="contained" color="secondary" className="optionButton">
-              Matches
-            </Button>
-            </Grid>
-            <Grid item justify="center" alignContent="center">
-            <Button variant="contained" color="secondary" className="optionButton">
-              Tournaments
-            </Button>
-            </Grid>
+        <AppBar id="appBar" position="static">
+              <Toolbar>
+                <h1 id="goGullyTextSmall">GoGully</h1>
+                <section className="rightToolbar">
+                  <NavigationMenu floatType={"right"}/>
+                </section>
+              </Toolbar>
+            </AppBar>
+            </Hidden>   
+            
+        <Grid container  id="optionGrid" spacing={4} direction={"column"}>
+        <h1 id="goGullyText">GoGully</h1>
+        <Paper id="searchField" elevation={5}>
+                    <input id="searchInput" placeholder="Search"/>
+                    <SearchIcon id="searchIcon"/>
+                    </Paper>
+        <a style={{width:"100%",textAlign:"center",marginTop:"20px",color:"blue"}}>Start a match?</a>
         </Grid>
-        </Hidden>
-        <Hidden smDown>
-        <Grid container justify="center" id="optionGrid" alignItems="center" spacing={9} >
-            <Grid item justify="center" alignContent="center">
-                <Paper elevation={10} className="paperContainer">
-                  <img src={Teams} className="paperImg"></img>
-                  <h3 className="optionLine">Teams</h3>
-                </Paper>
-            </Grid>
-            <Grid item justify="center" alignContent="center">
-            <Paper elevation={10} className="paperContainer">
-                  <img src={Matches} className="paperImg"></img>
-                  <h3 className="optionLine">Matches</h3>
-                </Paper>
-            </Grid>
-            <Grid item justify="center" alignContent="center">
-            <Paper elevation={10} className="paperContainer">
-                  <img src={Tournaments} className="paperImg"></img>
-                  <h3 className="optionLine">Tournaments</h3>
-                </Paper>
-            </Grid>
-        </Grid>
-        </Hidden>
-        </div>
       </div>
 
   }
 }
+
+
 
 export default Home;
