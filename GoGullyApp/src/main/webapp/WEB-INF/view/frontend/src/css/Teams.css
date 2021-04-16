@@ -1,0 +1,26 @@
+#teamsContainer{
+    width: 100%;
+    padding: 20px;
+    text-transform: capitalize;
+}
+
+.actionButton{
+    color: white;
+	background-color: green;
+	font-weight: bold;
+	font-family: 'Poppins';
+	text-transform: capitalize;
+}
+
+.actionButton:hover{
+    color: green;
+	background-color: white;
+    border-color: green;
+    border-width: 1px;
+}
+
+@media only screen and (min-width: 1000px) {
+    .createButton{
+        margin:20px 200px 0 0;
+    }
+}

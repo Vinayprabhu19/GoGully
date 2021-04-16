@@ -5,13 +5,13 @@ import Paper from '@material-ui/core/Paper';
 import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 import React, { Suspense, lazy, Component } from "react";
-import "../css/Home.css";
+import "../../css/Home.css";
+import "../../css/Teams.css";
 import SearchIcon from '@material-ui/icons/Search';
-import ProfileMenu from './Menu/ProfileMenu';
-import NavigationMenu from './Menu/NavigationMenu';
-import HomeImg from '../img/Home.svg';
-
-class Home extends Component {
+import ProfileMenu from '../Menu/ProfileMenu';
+import NavigationMenu from '../Menu/NavigationMenu';
+import AddIcon from '@material-ui/icons/Add';
+class Teams extends Component {
   constructor(props) {
     super(props);
     // Don't call this.setState() here!
@@ -24,11 +24,11 @@ class Home extends Component {
 
     
   render() {
-      return <div className="homePage">
+      return <div>
         <Hidden smDown>
         <AppBar id="appBar" position="static" elevation={0}>
               <Toolbar>
-                <h1 id="goGullyTextSmall">GoGully</h1>
+                <a href="/"><h1 id="goGullyTextSmall">GoGully</h1></a>
                 <section className="rightToolbar">
                 <div style={{clear: "both",verticalAlign:true}}>
                 <Button style={{float: "left"}}>
@@ -45,7 +45,7 @@ class Home extends Component {
                 </section>
               </Toolbar>
             </AppBar>
-            </Hidden> 
+        </Hidden>  
         <Hidden mdUp>
         <AppBar id="appBar" position="static">
               <Toolbar>
@@ -55,32 +55,12 @@ class Home extends Component {
                 </section>
               </Toolbar>
             </AppBar>
-            </Hidden>   
-          <Hidden mdDown>
-        <Grid container  id="optionGrid" spacing={0} direction={"column"}>
-          <div className="halfContainer">
-             <img src={HomeImg} id="homeImg"/>
-          </div>
-          <div className="halfContainer">
-             <h1 id="goGullyText">GoGully</h1>
-            <Paper id="searchField" elevation={5}>
-                    <input id="searchInput" placeholder="Search"/>
-                    <SearchIcon id="searchIcon"/>
-            </Paper>
+            </Hidden>  
+        <div  id="teamsContainer">
+          <div style={{width:"100%"}}>
+            <a href="/CreateTeam" style={{float:"right"}}><Button className="actionButton createButton" startIcon={<AddIcon/>}>Create Team</Button></a>
+            </div>
         </div>
-        </Grid>
-        </Hidden>  
-        <Hidden lgUp>
-        <div className="row justify-content-center">
-             <img src={HomeImg} id="homeImg"/>
-             <h1 id="goGullyText" style={{marginTop:0}}>GoGully</h1>
-            <Paper id="searchField" elevation={5}>
-                    <input id="searchInput" placeholder="Search"/>
-                    <SearchIcon id="searchIcon"/>
-            </Paper>
-        </div>
-        </Hidden>   
-        
       </div>
 
   }
@@ -88,4 +68,4 @@ class Home extends Component {
 
 
 
-export default Home;
+export default Teams;

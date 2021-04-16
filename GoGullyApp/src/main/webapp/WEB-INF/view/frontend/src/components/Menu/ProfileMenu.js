@@ -17,7 +17,7 @@ export default function ProfileMenu(props) {
   return (
     <div style={{float:props.floatType}}>
       <Button aria-controls="social-menu" aria-haspopup="true" onClick={handleClick}>
-         <AccountCircleIcon/>
+         <AccountCircleIcon style={{color:"green"}}/>
       </Button>
       {
       Boolean(anchorEl) && <Menu
@@ -28,7 +28,7 @@ export default function ProfileMenu(props) {
         onClose={handleClose}>
         <MenuItem onClick={handleClose}>
             <a href="/Profile" >
-                  profile
+                  Profile
               </a>
           </MenuItem>
         <MenuItem onClick={handleClose}>

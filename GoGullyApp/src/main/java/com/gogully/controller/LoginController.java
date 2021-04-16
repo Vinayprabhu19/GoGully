@@ -61,7 +61,7 @@ public class LoginController {
 		String passwordRepeat = request.getString("passwordRepeat");
 		String dob = request.getString("dob");
 		String email = request.getString("email");
-		String passRegex = "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\\-__+.]){1,}).{8,}$";
+		String passRegex = "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\\-__+.]){0,}).{8,}$";
 		String emailRegex = "[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?";
 		char gender = request.getString("gender").charAt(0);
 		UserDetails existingUser = userRepository.findByEmail(email);
@@ -96,6 +96,7 @@ public class LoginController {
 				user.setPassword(securePassword);
 				user.setSalt(salt);
 				user.setEmail(email);
+				user.setCreatedOn(sqlDate);
 				userRepository.save(user);
 				message = "User added";
 				obj.put("message", message);
