@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.gogully.config.SecurityService;
 import com.gogully.model.UserDetails;
 import com.gogully.repository.UserRepository;
+import com.gogully.utils.GenericUtils;
 import com.gogully.utils.PasswordUtils;
 
 @Controller
@@ -60,15 +61,15 @@ public class LoginController {
 		String password = request.getString("password");
 		String passwordRepeat = request.getString("passwordRepeat");
 		String dob = request.getString("dob");
-		String email = request.getString("email");
+		String email = request.getString("email").toLowerCase();
 		String passRegex = "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\\-__+.]){0,}).{8,}$";
 		String emailRegex = "[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?";
 		char gender = request.getString("gender").charAt(0);
 		UserDetails existingUser = userRepository.findByEmail(email);
 		if (!password.equals(passwordRepeat)) {
 			message = "Passwords don't match";
-		} else if (userName.length() < 7) {
-			message = "Username should be atleast 7 characters";
+		} else if (userName.length() < 7 | userName.length()>25) {
+			message = "Username should be 7 - 25 characters";
 		} else if (!userName.matches("[A-Za-z0-9]+") ) {
 			message = "Username cannot contain special characters and space";
 		} 
@@ -96,7 +97,8 @@ public class LoginController {
 				user.setPassword(securePassword);
 				user.setSalt(salt);
 				user.setEmail(email);
-				user.setCreatedOn(sqlDate);
+				user.setActive(true);
+				user.setCreatedOn(GenericUtils.getCurrentSQLDate());
 				userRepository.save(user);
 				message = "User added";
 				obj.put("message", message);

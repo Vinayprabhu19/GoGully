@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import Teams from "./components/Teams/Teams";
 import CreateTeam from "./components/Teams/CreateTeam";
+import PageNotFound from "./components/Other/PageNotFound";
 import "./App.css";
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route path="/Login" exact component={Login} />
           <Route path="/Teams" exact component={Teams}/>
           <Route path="/CreateTeam" exact component={CreateTeam}/>
-          <Redirect to="/404" />
+          <Route path="/404" exact component={PageNotFound} />
+          <Redirect to="/404" exact component={PageNotFound} />
         </Switch>
       </Suspense>
     </Router>

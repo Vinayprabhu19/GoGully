@@ -17,71 +17,71 @@ class Home extends Component {
     // Don't call this.setState() here!
 
     this.state = {
-      
-      };
+
+    };
 
   }
 
-    
+
   render() {
-      return <div className="homePage">
-        <Hidden smDown>
+    return <div className="homePage">
+      <Hidden smDown>
         <AppBar id="appBar" position="static" elevation={0}>
-              <Toolbar>
-                <h1 id="goGullyTextSmall">GoGully</h1>
-                <section className="rightToolbar">
-                <div style={{clear: "both",verticalAlign:true}}>
-                <Button style={{float: "left"}}>
+          <Toolbar>
+            <h1 id="goGullyTextSmall">GoGully</h1>
+            <section className="rightToolbar">
+              <div style={{ clear: "both", verticalAlign: true }}>
+                <Button style={{ float: "left" }}>
                   <a href="/Teams" className="menuOption">Teams</a>
                 </Button>
-                <Button style={{float: "left"}}>
+                <Button style={{ float: "left" }}>
                   <a href="/Teams" className="menuOption">Tournaments</a>
                 </Button>
-                <Button style={{float: "left"}}>
+                <Button style={{ float: "left" }}>
                   <a href="/Teams" className="menuOption">Matches</a>
                 </Button>
-                <ProfileMenu  floatType={"right"} />
-                </div>
-                </section>
-              </Toolbar>
-            </AppBar>
-            </Hidden> 
-        <Hidden mdUp>
-        <AppBar id="appBar" position="static">
-              <Toolbar>
-                <h1 id="goGullyTextSmall">GoGully</h1>
-                <section className="rightToolbar">
-                  <NavigationMenu floatType={"right"}/>
-                </section>
-              </Toolbar>
-            </AppBar>
-            </Hidden>   
-          <Hidden mdDown>
-        <Grid container  id="optionGrid" spacing={0} direction={"column"}>
+                <ProfileMenu floatType={"right"} />
+              </div>
+            </section>
+          </Toolbar>
+        </AppBar>
+      </Hidden>
+      <Hidden mdUp>
+        <AppBar id="appBar" position="static" elevation={0}>
+          <Toolbar>
+            <h1 id="goGullyTextSmall">GoGully</h1>
+            <section className="rightToolbar">
+              <NavigationMenu floatType={"right"} />
+            </section>
+          </Toolbar>
+        </AppBar>
+      </Hidden>
+      <Hidden mdDown>
+        <Grid container id="optionGrid" spacing={0} direction={"column"}>
           <div className="halfContainer">
-             <img src={HomeImg} id="homeImg"/>
+            <img src={HomeImg} id="homeImg" />
           </div>
           <div className="halfContainer">
-             <h1 id="goGullyText">GoGully</h1>
+            <h1 id="goGullyText">GoGully</h1>
             <Paper id="searchField" elevation={5}>
-                    <input id="searchInput" placeholder="Search"/>
-                    <SearchIcon id="searchIcon"/>
+              <input id="searchInput" placeholder="Search" />
+              <SearchIcon id="searchIcon" />
             </Paper>
-        </div>
+          </div>
         </Grid>
-        </Hidden>  
-        <Hidden lgUp>
+      </Hidden>
+      <Hidden lgUp>
         <div className="row justify-content-center">
-             <img src={HomeImg} id="homeImg"/>
-             <h1 id="goGullyText" style={{marginTop:0}}>GoGully</h1>
-            <Paper id="searchField" elevation={5}>
-                    <input id="searchInput" placeholder="Search"/>
-                    <SearchIcon id="searchIcon"/>
-            </Paper>
+          <img src={HomeImg} id="homeImg" />
+          <h1 id="goGullyText" style={{ marginTop: 0 }}>GoGully</h1>
+          <Paper id="searchField" elevation={5}>
+            <input id="searchInput" placeholder="Search" />
+            <SearchIcon id="searchIcon" />
+          </Paper>
         </div>
-        </Hidden>   
-        
-      </div>
+      </Hidden>
+
+    </div>
 
   }
 }

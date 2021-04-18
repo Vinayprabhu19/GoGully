@@ -11,6 +11,9 @@ manifest-*
 *.war.original
 reactui/package-lock.json
 .mta/
+GoGullyApp/src/main/webapp/WEB-INF/view/frontend/.vs/frontend/v16/.suo
+GoGullyApp/src/main/webapp/WEB-INF/view/frontend/.vs/frontend/v16/VSWorkspaceState.json
+GoGullyApp/src/main/webapp/WEB-INF/view/frontend/.vs/frontend/v16/slnx.sqlite
 
 nextjs
 dist/

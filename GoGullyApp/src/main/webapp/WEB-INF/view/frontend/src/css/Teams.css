@@ -1,5 +1,6 @@
 #teamsContainer{
     width: 100%;
+    height: 100%;
     padding: 20px;
     text-transform: capitalize;
 }
@@ -18,9 +19,49 @@
     border-color: green;
     border-width: 1px;
 }
+.tag{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.boldInfo{font-weight:"bold"}
+.teamAccordionSummary{width:"100%";padding:"10px"}
+.teamAccordion{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px 20px 8px 20px;
+  }
+
+  th{
+      background-color:#4CAF50;
+      color:white;
+  }
+  tr:nth-child(even){background-color: #f2f2f2;}
+
+  tr:hover {background-color: #ddd;}
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
 
 @media only screen and (min-width: 1000px) {
     .createButton{
         margin:20px 200px 0 0;
+    }
+    #teamsContainer{
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .teamAccordionSummary{
+        padding: 5px;
     }
 }
