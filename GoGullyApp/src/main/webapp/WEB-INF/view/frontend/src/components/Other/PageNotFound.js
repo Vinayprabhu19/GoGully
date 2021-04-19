@@ -14,9 +14,9 @@ class PageNotFound extends Component {
 
 
   render() {
-    return <div style={{padding:"25px"}}>
-      <h2 style={{textAlign:"center"}}> Page Not Found</h2>
-      <img src={PageNotFoundImg} style={{width:"70%"}}/>
+    return <div style={{padding:"25px"}} className="row justify-content-center">
+      <h2 style={{textAlign:"center",fontFamily:"Poppins",textTransform:"uppercase",margin:"20px"}}> Page Not Found</h2>
+      <img src={PageNotFoundImg} style={{width:"100%"}}/>
     </div>
 
   }
