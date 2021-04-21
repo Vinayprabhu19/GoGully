@@ -29,7 +29,12 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
+.buttonGroup{
+    padding: 10px;
+}
+#title{
+    text-align: center;
+}
 td, th {
     border: 1px solid #ddd;
     padding: 8px 20px 8px 20px;

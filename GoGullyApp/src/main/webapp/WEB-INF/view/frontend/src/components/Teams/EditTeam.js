@@ -18,13 +18,15 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import EditIcon from '@material-ui/icons/Edit';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AddPlayer from "./AddPlayer";
 class EditTeam extends Component {
   constructor(props) {
     super(props);
     // Don't call this.setState() here!
 
     this.state = {
-      teams: []
+      teams: [],
+      dialogAPOpen:false
     };
 
   }
@@ -88,7 +90,12 @@ class EditTeam extends Component {
           </Toolbar>
         </AppBar>
       </Hidden>
-      <div id="teamsContainer"></div>
+      <div id="teamsContainer">
+      <div style={{ width: "100%", height: "50px" }}>
+          <Button className="actionButton createButton" style={{backgroundColor:"green",color:"white"}} startIcon={<AddIcon />} onClick={(e)=>{this.setState({dialogAPOpen:true});}}>Add New Player</Button>
+          <AddPlayer open={this.state.dialogAPOpen} close={(data) => {this.setState({dialogAPOpen:false});}} />
+        </div>
+      </div>
     </div>
 
   }
