@@ -27,6 +27,7 @@ class AddPlayer extends Component {
       data: this.getMockData(),
       playersSelected: []
     }
+    this.selectPlayer = this.selectPlayer.bind(this);
   }
   componentDidMount() {
     var url = "http://localhost:8081";
@@ -54,6 +55,20 @@ class AddPlayer extends Component {
       }
     });
   }
+
+  selectPlayer(evt){
+
+    var userId= evt.target.value;
+    if(evt.target.checked){
+      //select player
+      this.state.playersSelected.push(userId);
+    }
+    else{
+      this.state.playersSelected=this.state.playersSelected.filter(function(p){
+        return p!=userId;
+      });
+    }
+  }
   onCancel() {
     this.props.close(null);
   }
@@ -77,50 +92,30 @@ class AddPlayer extends Component {
                   <thead>
                     <tr>
                       <th scope="col"></th>
-                      <th scope="col">Article Name</th>
-                      <th scope="col">Author</th>
-                      <th scope="col">Words</th>
-                      <th scope="col">Shares</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Gender</th>
+                      <th scope="col">Age</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck1" checked />
-                          <label class="custom-control-label" for="customCheck1">1</label>
-                        </div>
-                      </td>
-                      <td>Bootstrap 4 CDN and Starter Template</td>
-                      <td>Cristina</td>
-                      <td>913</td>
-                      <td>2.846</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck2" />
-                          <label class="custom-control-label" for="customCheck2">2</label>
-                        </div>
-                      </td>
-                      <td>Bootstrap Grid 4 Tutorial and Examples</td>
-                      <td>Cristina</td>
-                      <td>1.434</td>
-                      <td>3.417</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck3" />
-                          <label class="custom-control-label" for="customCheck3">3</label>
-                        </div>
-                      </td>
-                      <td>Bootstrap Flexbox Tutorial and Examples</td>
-                      <td>Cristina</td>
-                      <td>1.877</td>
-                      <td>1.234</td>
-                    </tr>
-                  </tbody>
+                    {
+                      this.state.data.map(p => (
+                        <tr key={p.userId}>
+                          <td>
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" id={p.userId} onClick={this.selectPlayer} value={p.userId}/>
+                              <label class="custom-control-label" for={p.userId}></label>
+                            </div>
+                          </td>
+                          <td>{p.name}</td>
+                          <td>{p.userName}</td>
+                          <td>{p.gender}</td>
+                          <td>{p.age} Years</td>
+                        </tr>
+                      ))
+                    }
+                    </tbody>
                 </table>
               </div>
             </div>
@@ -136,7 +131,8 @@ class AddPlayer extends Component {
   }
 
   getMockData() {
-    return [["Vinay P", "vinayprabhu19", "Male", 25, "Yes", 1], ["David Warner", "davidwarner", "Male", 25, "Yes", 1], ["MS Dhoni", "Dhoni", "Male", 25, "Yes", 1]];
+    return [{"gender":"Male","name":"Vinay P","exists":"Yes","userName":"vinayprabhu","userId":1,"age":25},{"gender":"Male","name":"David Warner","exists":"Yes","userName":"davidwarner","userId":2,"age":34},
+    {"gender":"Male","name":"Rashid Khan","exists":"No","userName":"","userId":3,"age":22}];
   }
 }
 
