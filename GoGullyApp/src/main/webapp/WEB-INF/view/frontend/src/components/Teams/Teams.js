@@ -91,7 +91,7 @@ class Teams extends Component {
       <div id="teamsContainer">
         <div style={{ width: "100%", height: "50px" }}>
           <h5 style={{ float: "left", fontWeight: "bold" }}>Teams ({this.state.teams.length})</h5>
-          <a href="/CreateTeam" style={{ float: "right" }}><Button className="actionButton createButton" style={{backgroundColor:"green",color:"white"}} startIcon={<AddIcon />}>Create Team</Button></a>
+          <a href="/CreateTeam" style={{ float: "right" }}><Button className="actionButton createButton" style={{ backgroundColor: "green", color: "white" }} startIcon={<AddIcon />}>Create Team</Button></a>
         </div>
         <div>
           {
@@ -112,7 +112,7 @@ class Teams extends Component {
                       </div>
                     </div>
                     {
-                      team.owner && <a href={"/EditTeam/"+team.teamId}><EditIcon style={{ width: "25px", height: "25px", float: "right", color: "green" }}></EditIcon></a>
+                      team.owner && <a href={"/EditTeam/" + team.teamId}><EditIcon style={{ width: "25px", height: "25px", float: "right", color: "green" }}></EditIcon></a>
                     }
                   </div>
                 </AccordionSummary>
@@ -122,6 +122,8 @@ class Teams extends Component {
                       <thead>
                         <tr>
                           <th>Player</th>
+                          <th>Gender</th>
+                          <th>Age</th>
                           <th>Role</th>
                         </tr>
                       </thead>
@@ -130,6 +132,8 @@ class Teams extends Component {
                           team.players.map(p => (
                             <tr key={p.name}>
                               <td>{p.name}</td>
+                              <td>{p.gender}</td>
+                              <td>{p.age}</td>
                               <td>{p.role}</td>
                             </tr>
                           ))

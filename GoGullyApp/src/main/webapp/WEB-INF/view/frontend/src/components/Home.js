@@ -57,7 +57,7 @@ class Home extends Component {
         </AppBar>
       </Hidden>
       <Hidden mdDown>
-        <Grid container id="optionGrid" spacing={0} direction={"column"}>
+        <Grid container id="optionGrid" spacing={0} direction={"column"} style={{padding:"20px"}}>
           <div className="halfContainer">
             <img src={HomeImg} id="homeImg" />
           </div>
@@ -71,7 +71,7 @@ class Home extends Component {
         </Grid>
       </Hidden>
       <Hidden lgUp>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center" >
           <img src={HomeImg} id="homeImg" />
           <h1 id="goGullyText" style={{ marginTop: 0 }}>GoGully</h1>
           <Paper id="searchField" elevation={5}>

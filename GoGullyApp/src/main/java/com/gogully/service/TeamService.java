@@ -1,6 +1,7 @@
 package com.gogully.service;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -88,11 +89,99 @@ public class TeamService {
 				player.put("userName", tp.getUserName());
 				player.put("role", tp.getRole());
 				player.put("name", tp.getName());
+				int age = (new Date()).getYear()- tp.getDob().getYear();
+				player.put("age",age);
+				player.put("gender",GenericUtils.getGender(tp.getGender()));
 				players.put(player);
 			}
 			obj.put("players", players);
 			playerTeams.put(obj);
 		}
 		return new ResponseEntity<String>(playerTeams.toString(),HttpStatus.OK);
+	}
+	
+	public ResponseEntity<String> getTeam(String userName,long teamId){
+		JSONObject response= new JSONObject();
+		String message;
+		List<TeamPlayer> teamPlayers = teamRepository.getTeamPlayers(teamId);
+		JSONArray players = new JSONArray();
+		for(TeamPlayer tp:teamPlayers) {
+			JSONObject player= new JSONObject();
+			player.put("userId", tp.getUserId());
+			player.put("userName", tp.getUserName());
+			player.put("role", tp.getRole());
+			player.put("name", tp.getName());
+			int age = (new Date()).getYear()- tp.getDob().getYear();
+			player.put("age",age);
+			player.put("gender",GenericUtils.getGender(tp.getGender()));
+			players.put(player);
+		}
+		return new ResponseEntity<String>(players.toString(),HttpStatus.OK);
+	}
+	
+	public ResponseEntity<String> addPlayers(String userName,long teamId,String requestString){
+		JSONArray newPlayers=new JSONArray(requestString);
+		JSONObject response= new JSONObject();
+		String message;
+		Team team = teamRepository.findByTeamId(teamId);
+		UserDetails user = userRepository.findByUserName(userName);
+		if(team.getCreatedBy()!=user.getUserId()) {
+			message="You are not authorised to add any player to the team";
+			response.put("message", message);
+			return new ResponseEntity<String>(response.toString(),HttpStatus.BAD_REQUEST);
+		}
+		for(int i=0;i<newPlayers.length();i++) {
+			PlaysFor p = playForRepository.findByTeamIdAndUserId(teamId, newPlayers.getLong(i));
+			if(p!=null)
+				continue;
+			p=new PlaysFor();
+			p.setTeamId(teamId);
+			p.setUserId(newPlayers.getLong(i));
+			playForRepository.save(p);
+		}
+		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
+		
+	}
+	public ResponseEntity<String> removePlayer(String userName,long teamId,long playerId){
+		JSONObject response= new JSONObject();
+		String message;
+		Team team = teamRepository.findByTeamId(teamId);
+		UserDetails user = userRepository.findByUserName(userName);
+		if(team.getCreatedBy()!=user.getUserId()) {
+			message="You are not authorised to add any player to the team";
+			response.put("message", message);
+			return new ResponseEntity<String>(response.toString(),HttpStatus.BAD_REQUEST);
+		}
+		PlaysFor p = playForRepository.findByTeamIdAndUserId(teamId, playerId);
+		if(p==null) {
+			message="Player doesn't exists";
+			response.put("message", message);
+			return new ResponseEntity<String>(response.toString(),HttpStatus.BAD_REQUEST);
+		}
+		playForRepository.delete(p);
+		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
+		
+	}
+	
+	public ResponseEntity<String> setRole(String userName,long teamId,long playerId,String role){
+		JSONObject response= new JSONObject();
+		String message;
+		Team team = teamRepository.findByTeamId(teamId);
+		UserDetails user = userRepository.findByUserName(userName);
+		if(team.getCreatedBy()!=user.getUserId()) {
+			message="You are not authorised to add any player to the team";
+			response.put("message", message);
+			return new ResponseEntity<String>(response.toString(),HttpStatus.BAD_REQUEST);
+		}
+		PlaysFor p = playForRepository.findByTeamIdAndUserId(teamId, playerId);
+		if(p==null) {
+			message="Player doesn't exists";
+			response.put("message", message);
+			return new ResponseEntity<String>(response.toString(),HttpStatus.BAD_REQUEST);
+		}
+		p.setRole(role);
+		playForRepository.save(p);
+		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
+		
 	}
 }

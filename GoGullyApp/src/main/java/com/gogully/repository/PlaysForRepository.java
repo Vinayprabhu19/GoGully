@@ -26,4 +26,6 @@ public interface PlaysForRepository extends CrudRepository<PlaysFor, Long> {
 			+ "and t.team_id not in (select team_id from team where created_by=?1)\r\n"
 			+ "group by t.team_id,team_name,location",nativeQuery = true)
      public List<TeamInfo> findTeamsOfPlayer(long userId);
+	
+	 public PlaysFor findByTeamIdAndUserId(long teamId,long userId);
 }

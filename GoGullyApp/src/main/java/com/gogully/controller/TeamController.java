@@ -46,6 +46,26 @@ public class TeamController {
 		return teamService.getTeams(user.getName());
 	}
 	
+	@RequestMapping(value = "/api/getTeam/{teamId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> getTeam(Principal user,@PathVariable long teamId){
+		return teamService.getTeam(user.getName(),teamId);
+	}
+	
+	@RequestMapping(value = "/api/addPlayers/{teamId}",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> addPlayers(Principal user,@PathVariable long teamId,@RequestBody String requestString){
+		return teamService.addPlayers(user.getName(),teamId,requestString);
+	}
+	
+	@RequestMapping(value = "/api/removePlayer/{teamId}/{playerId}",method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> addPlayers(Principal user,@PathVariable long teamId,@PathVariable long playerId){
+		return teamService.removePlayer(user.getName(),teamId,playerId);
+	}
+	
+	@RequestMapping(value = "/api/setRole/{teamId}/{playerId}/{role}",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> setRole(Principal user,@PathVariable long teamId,@PathVariable long playerId,@PathVariable String role){
+		return teamService.setRole(user.getName(),teamId,playerId,role);
+	}
+	
 //	@GetMapping("/EditTeam/{teamId}")
 //    public String showLoginForm(Model model,Principal principal,@PathVariable String teamId) {
 //		long id=0;

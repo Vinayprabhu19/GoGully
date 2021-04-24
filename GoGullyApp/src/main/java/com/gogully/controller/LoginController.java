@@ -78,7 +78,7 @@ public class LoginController {
 		}
 		else if (!email.matches(emailRegex)) {
 			message = "Please enter a valid email";
-		} else if (existingUser != null) {
+		} else if (existingUser != null && existingUser.isActive()) {
 			message = "Email already exists";
 		} else if (!password.matches(passRegex)) {
 			message = "Please enter strong password - Min 8 characters with atleast one uppercase,lowercase,digit and special charcter";

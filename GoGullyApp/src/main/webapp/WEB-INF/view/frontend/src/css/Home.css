@@ -20,7 +20,7 @@
 	background-color: transparent;
 	vertical-align: middle;
 	color: black;
-  
+
   }
   #optionGrid{
 	  width: 100%;
@@ -75,7 +75,7 @@
 }
 .bottomSection{
 	width: 100%;
-	
+
 }
 .leftContainer{
 	width: 50%;
@@ -139,7 +139,7 @@ textarea:focus, input:focus{
   #sideImg{
 	  margin:10%;
   }
-  
+
   /* * {
 	border: 1px solid #f00 !important;
   } */

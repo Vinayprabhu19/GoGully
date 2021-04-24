@@ -56,6 +56,9 @@ public class UserDetails {
 	
 	@Column
 	private String salt;
+	
+	@Column
+	private String addedBy;
 
 	public long getUserId() {
 		return userId;
@@ -159,6 +162,14 @@ public class UserDetails {
 
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+
+	public String getAddedBy() {
+		return addedBy;
+	}
+
+	public void setAddedBy(String addedBy) {
+		this.addedBy = addedBy;
 	}
 	
 }
